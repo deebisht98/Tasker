@@ -51,6 +51,7 @@
     padding: 10px;
     margin: 0;
     width: 85%;
+    margin-bottom: 10px;
   }
   .card_input {
     width: 60%;
@@ -60,7 +61,8 @@
   }
   .todo_info {
     padding: 0;
-    word-break: normal;
+    word-wrap:break-word;
+    padding-right: 5px;
   }
   .icons_wrapper {
     margin-top: 0px;
