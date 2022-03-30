@@ -6,7 +6,13 @@ import { Draggable } from "react-beautiful-dnd";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateTodo, deleteTodo, toggleTodo } from "../../store/actions";
+import { injectStyle } from "react-toastify/dist/inject-style";
+import { ToastContainer, toast } from "react-toastify";
 
+// CALL IT ONCE IN YOUR APP
+if (typeof window !== "undefined") {
+  injectStyle();
+}
 type Props = {
   index: number;
   todo: Todo;
@@ -60,50 +66,58 @@ const Card: React.FC<Props> = ({
   }, [showEdit]);
 
   return (
-    <Draggable draggableId={todo.id.toString()} index={index}>
-      {(provided, snapshot) => (
-        <form
-          className={`todo_card ${snapshot.isDragging ? "drag" : ""}`}
-          onSubmit={(e) => handleSubmit(e, todo.id)}
-          ref={provided.innerRef}
-          {...provided.dragHandleProps}
-          {...provided.draggableProps}
-        >
-          <div className="todo_info">
-            {showEdit ? (
-              <input
-                ref={editRef}
-                type="text"
-                className="card_input"
-                value={editedTodo}
-                onChange={(e) => setEditedTodo(e.target.value)}
+    <>
+      <ToastContainer />
+      <Draggable draggableId={todo.id.toString()} index={index}>
+        {(provided, snapshot) => (
+          <form
+            className={`todo_card ${snapshot.isDragging ? "drag" : ""}`}
+            onSubmit={(e) => handleSubmit(e, todo.id)}
+            ref={provided.innerRef}
+            {...provided.dragHandleProps}
+            {...provided.draggableProps}
+          >
+            <div className="todo_info">
+              {showEdit ? (
+                <input
+                  ref={editRef}
+                  type="text"
+                  className="card_input"
+                  value={editedTodo}
+                  onChange={(e) => setEditedTodo(e.target.value)}
+                />
+              ) : todo.isDone ? (
+                <p className="done">{todo.todo}</p>
+              ) : (
+                <p>{todo.todo}</p>
+              )}
+            </div>
+            <div className="icons_wrapper">
+              <MdOpenInBrowser
+                onClick={() => {
+                  if (!todo.isDone) {
+                    navigate(`/todo/${todo.id}`, { state: { data: todo } });
+                  } else {
+                    toast.dark(
+                      "Completed tasks cannot be opened in pomodoro mode."
+                    );
+                  }
+                }}
+                // onMouseOver={() => alert(1)}
+                className="icons"
+                title="OPEN THIS TASK IN POMODORO MODE"
               />
-            ) : todo.isDone ? (
-              <p className="done">{todo.todo}</p>
-            ) : (
-              <p>{todo.todo}</p>
-            )}
-          </div>
-          <div className="icons_wrapper">
-            <MdOpenInBrowser
-              onClick={() => {
-                if (!todo.isDone) {
-                  navigate(`/todo/${todo.id}`, { state: { data: todo } });
-                } else {
-                  alert("Completed tasks cannot be opened in pomodoro mode.");
-                }
-              }}
-              // onMouseOver={() => alert(1)}
-              className="icons"
-              title="OPEN THIS TASK IN POMODORO MODE"
-            />
-            <MdEdit onClick={handleEdit} className="icons" />
-            <MdDelete onClick={() => handleDelete(todo.id)} className="icons" />
-            <MdDone onClick={() => handleDone(todo.id)} className="icons" />
-          </div>
-        </form>
-      )}
-    </Draggable>
+              <MdEdit onClick={handleEdit} className="icons" />
+              <MdDelete
+                onClick={() => handleDelete(todo.id)}
+                className="icons"
+              />
+              <MdDone onClick={() => handleDone(todo.id)} className="icons" />
+            </div>
+          </form>
+        )}
+      </Draggable>
+    </>
   );
 };
 

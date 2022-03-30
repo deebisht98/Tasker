@@ -12,7 +12,7 @@ ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/Tasker" element={<Home />} />
           <Route path="todo/:id" element={<Pomodoro />} />
         </Routes>
       </BrowserRouter>
