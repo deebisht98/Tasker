@@ -67,6 +67,10 @@ const Home: React.FC = () => {
         <span className="heading">Tasker</span>
         <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
         <TodoList todos={todos} completedTodos={completedTodos} />
+        <footer>
+          <p> Hold and Drop to finish or reassign tasks...</p>
+          <p>Made with 💛 by Dheeraj Bisht.</p>
+        </footer>
       </div>
     </DragDropContext>
   );
