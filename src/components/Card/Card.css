@@ -1,0 +1,74 @@
+.todo_card {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  background-color: rgb(87, 61, 205);
+  justify-content: space-between;
+  margin-top: 10px;
+  color: white;
+  border-radius: 5px;
+}
+.todo_info {
+  flex: 5;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+  padding-left: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  text-overflow: clip;
+  word-break: break-all;
+  text-transform: capitalize;
+}
+.card_input {
+  padding: 10px;
+  margin: 10px 0;
+  border: 0;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 80%;
+  outline: none;
+}
+.icons_wrapper {
+  flex: 3.5v;
+  flex-grow: 0;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+.done {
+  text-decoration: line-through;
+  text-decoration-thickness: 3px;
+  text-decoration-color: rgb(255, 0, 85);
+}
+.icons {
+  font-size: 20px;
+  margin: 10px;
+}
+.drag {
+  background-color: rgb(61, 39, 159);
+}
+@media (max-width: 768px) {
+  .todo_card {
+    padding: 10px;
+    margin: 0;
+    width: 85%;
+  }
+  .card_input {
+    width: 60%;
+  }
+  .icons {
+    font-size: 14px;
+  }
+  .todo_info {
+    padding: 0;
+    word-break: normal;
+  }
+  .icons_wrapper {
+    margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 0px;
+  }
+  .icons {
+    margin: 10px 0px;
+  }
+}
