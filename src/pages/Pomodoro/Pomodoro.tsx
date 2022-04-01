@@ -72,7 +72,7 @@ const Pomodoro: React.FC = () => {
           sec = "0" + sec;
         }
         if (minute === "00" && sec === "00") {
-          toast.dark("Please stop the timer to take the break.");
+          toast.dark("Congratulations!!! You have successfully completed the pomodoro.");
           clearInterval(timer);
           setStartTimer(!startTimer);
           setShowRestart(true);
