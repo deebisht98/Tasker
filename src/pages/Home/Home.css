@@ -19,7 +19,7 @@ footer{
   width: 90%;
   bottom: 0;
   padding: 10px;
-  color: #fff;
+  background-color: #efefef;
   text-align: center;
 }
 @media (max-width: 768px) {
