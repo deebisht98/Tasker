@@ -11,17 +11,24 @@
 }
 .todo_header_wrapper {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   width: 50%;
   align-items: center;
   margin-bottom: 40px;
 }
 .todo_header_wrapper p {
-  margin-right: 30px;
+  margin:0px 30px;
+}
+.todo_btns{
+  display: flex;
+  margin-top: 30px;
+  width: 100%;
+  justify-content: center;
 }
 .finish {
   height: 30px;
-  width: 140px;
+  width: fit-content;
   font-size: 20px;
   font-weight: 600;
   display: flex;
@@ -31,9 +38,10 @@
   cursor: pointer;
   padding: 10px 20px;
   border-radius: 40px;
+  margin: 0px 20px;
 }
 .finish p {
-  margin-right: 10px;
+  margin:0px 10px;
 }
 .confetti {
   overflow: hidden;
@@ -72,8 +80,8 @@
   font-size: 20px;
   font-weight: 600;
   cursor: pointer;
-  padding: 10px 20px;
-  height: 70%;
+  padding: 15px;
+  height: fit-content;
   transition: all 0.3s;
 }
 .curr {

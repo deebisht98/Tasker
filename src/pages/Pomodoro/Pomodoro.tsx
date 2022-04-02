@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Confetti from "react-confetti";
 import { Todo } from "../../components/model/model";
-import { MdDone } from "react-icons/md";
+import { MdDone, MdWest } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { finishTodo } from "../../store/actions";
 import { MdRestartAlt } from "react-icons/md";
@@ -72,7 +72,9 @@ const Pomodoro: React.FC = () => {
           sec = "0" + sec;
         }
         if (minute === "00" && sec === "00") {
-          toast.dark("Congratulations!!! You have successfully completed the pomodoro.");
+          toast.dark(
+            "Congratulations!!! You have successfully completed the pomodoro."
+          );
           clearInterval(timer);
           setStartTimer(!startTimer);
           setShowRestart(true);
@@ -105,9 +107,15 @@ const Pomodoro: React.FC = () => {
       <div className="todo_wrapper">
         <div className="todo_header_wrapper">
           <p className="todo_heading">{data.todo}</p>
-          <div className="finish" onClick={finishTask}>
-            <p>Finish Task</p>
-            <MdDone />
+          <div className="todo_btns">
+            <div className="finish" onClick={() => navigate("/Tasker")}>
+              <MdWest />
+              <p>Finish Later</p>
+            </div>
+            <div className="finish" onClick={finishTask}>
+              <p>Finish Task</p>
+              <MdDone />
+            </div>
           </div>
         </div>
         {show && (
